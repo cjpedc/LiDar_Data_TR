@@ -21,6 +21,7 @@ public class Sensor_Select_GUI extends JPanel implements ActionListener {
     static String sensor2 = "Velodyne 2";
     public JRadioButton s1Button = new JRadioButton(sensor1);
     public JRadioButton s2Button = new JRadioButton(sensor2);
+    JLabel picture;
     static boolean clientExists = false;
     static public Client client;
     static public RxServer rxServer;
@@ -32,7 +33,6 @@ public class Sensor_Select_GUI extends JPanel implements ActionListener {
     Sensor_Select_GUI() {
 
         super((new BorderLayout()));
-        Client PortFwd = null;
         //Create radio buttons
         //JRadioButton s1Button = new JRadioButton(sensor1);
         s1Button.setMnemonic(KeyEvent.VK_1);
@@ -51,6 +51,14 @@ public class Sensor_Select_GUI extends JPanel implements ActionListener {
         //Register a listener for the radio buttons
         s1Button.addActionListener(this);
         s2Button.addActionListener(this);
+        
+        //Set up the picture label.
+        picture = new JLabel(createImageIcon("vlp16.png"));
+        
+        //The preferred size is hard-coded to be the width of the
+        //widest image and the height of the tallest image.
+        //A real program would compute this.
+        //picture.setPreferredSize(new Dimension(177, 122));
 
         //Put the radio buttons in a column in a panel
         JPanel radioPanel = new JPanel(new GridLayout(0, 1));
@@ -58,7 +66,18 @@ public class Sensor_Select_GUI extends JPanel implements ActionListener {
         radioPanel.add(s2Button);
 
         add(radioPanel, BorderLayout.LINE_START);
+        add(picture, BorderLayout.CENTER);
         setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+    }
+    
+    protected static ImageIcon createImageIcon(String path) {
+        java.net.URL imgURL = Sensor_Select_GUI.class.getResource(path);
+        if (imgURL != null) {
+            return new ImageIcon(imgURL);
+        } else {
+            System.err.println("Couldn't find file: " + path);
+            return null;
+        }
     }
 
     @Override
@@ -122,7 +141,7 @@ public class Sensor_Select_GUI extends JPanel implements ActionListener {
     public static void main(String[] args) {
         //Schedule a job for the event-dispatching thread:
         //creating and showing this application's GUI
-        
+
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 createGUI();
