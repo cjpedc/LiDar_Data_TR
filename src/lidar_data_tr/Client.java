@@ -27,7 +27,7 @@ public class Client {
             // Create a socket to listen on the port
             open_dsocket(port);
             out_dsocket = new DatagramSocket();
-            IPAddress = InetAddress.getByName("255.255.255.255"); // sending to
+            IPAddress = InetAddress.getByName("130.229.177.237"); // sending to
             // Create a buffer to read datagrams into. If a
             // packet is larger than this buffer, the
             // excess will simply be discarded!

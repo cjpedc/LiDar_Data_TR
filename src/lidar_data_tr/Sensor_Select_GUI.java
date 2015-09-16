@@ -82,14 +82,14 @@ public class Sensor_Select_GUI extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        int port = 2369;
+        int port = 2372;
 
         if (s1Button.isSelected()) {
             System.out.print("Sensor 1");
-            port = 2369;
+            port = 2372;
         } else if (s2Button.isSelected()) {
             System.out.print("Sensor 2");
-            port = 2370;
+            port = 2371;
         }
 
         if (!clientExists) {
@@ -145,7 +145,7 @@ public class Sensor_Select_GUI extends JPanel implements ActionListener {
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 createGUI();
-                client = new Client(2369);
+                client = new Client(2372);
                 createThread(client);
             }
         });
